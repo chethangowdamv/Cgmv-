@@ -1,0 +1,26 @@
+
+import wikipediaapi
+
+def search_wikipedia(query):
+    wiki_wiki = wikipediaapi.Wikipedia('en')
+    page_py = wiki_wiki.page(query)
+
+    if not page_py.exists():
+        return "I couldn't find information on that topic. Please try again."
+
+    return page_py.text[:500]  
+
+def main():
+    print("Welcome to the Wikipedia Chatbot!")
+    while True:
+        user_input = input("You: ")
+        
+        if user_input.lower() == 'exit':
+            print("Goodbye!")
+            break
+
+        result = search_wikipedia(user_input)
+        print("Chatbot:", result)
+
+if _name_ == "_main_":
+    main()
